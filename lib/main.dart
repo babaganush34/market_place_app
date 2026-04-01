@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:market_place_app/core/di/inject_module.dart';
-import 'package:market_place_app/features/home/presentation/pages/home_page.dart';
+import 'package:market_place_app/core/router/app_router.dart';
 
 void main() {
   configureDependencies();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
-  // This widget is the root of your application.
+  final _router = AppRouter();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Market Place', home: const HomePage());
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: _router.config(),
+    );
   }
 }

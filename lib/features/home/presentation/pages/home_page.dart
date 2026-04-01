@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:market_place_app/core/di/inject_module.dart';
 import 'package:market_place_app/features/home/presentation/bloc/product_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-// import 'package:auto_route/auto_route.dart';
+import 'package:market_place_app/features/home/presentation/widgets/product_card.dart';
+import 'package:auto_route/auto_route.dart';
 
-// @AutoRoute()
+@RoutePage()
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -43,31 +43,30 @@ class _HomePageState extends State<HomePage> {
                 }
                 if (state is LoadedState) {
                   final products = state.listProductsModel.products;
-                  return ListView.separated(
-                    separatorBuilder: (BuildContext context, int index) =>
-                        const Divider(),
-                    itemCount: products.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(products[index].title),
-                        leading: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: CachedNetworkImage(
-                            imageUrl: products[index].images.first,
-                            fit: BoxFit.cover,
+                  return Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 10,
+                        crossAxisSpacing: 20,
+                        childAspectRatio: 0.4,
+                      ),
+                      itemCount: products.length,
+                      itemBuilder: (context, index) {
+                        final item = products[index];
+                        return ProductCard(
+                          image: item.images.first,
+                          title: item.title,
+                          price: '\$${item.price.toStringAsFixed(2)}',
+                          tags: item.tags,
+                          rating: item.rating,
+                          onAddToCart: () => _productsBloc.add(
+                            AddToCartEvent(productModel: item),
                           ),
-                        ),
-                        trailing: ElevatedButton(
-                          onPressed: () {
-                            _productsBloc.add(
-                              AddToCartEvent(productModel: products[index]),
-                            );
-                          },
-                          child: Icon(Icons.favorite),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   );
                 }
                 return const Center(child: Text('State Error'));
