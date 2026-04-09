@@ -2,13 +2,13 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:market_place_app/core/error/failure.dart';
-import 'package:market_place_app/features/home/data/datasources/list_products_api.dart';
+import 'package:market_place_app/features/home/data/datasources/list_products_remote_datasource.dart';
 import 'package:market_place_app/features/home/data/models/list_products_model.dart';
 import 'package:market_place_app/features/home/domain/repository/product_repository.dart';
 
 @LazySingleton(as: ProductRepository)
 class ProductRepositoryImpl implements ProductRepository {
-  final ListProductsApi listProductsApi;
+  final ListProductsRemoteDataSource listProductsApi;
 
   ProductRepositoryImpl(this.listProductsApi);
 

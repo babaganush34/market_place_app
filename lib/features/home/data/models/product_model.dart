@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:market_place_app/core/types/types.dart';
+import 'package:market_place_app/core/types/typedef.dart';
 
 part 'product_model.g.dart';
 

@@ -63,7 +63,6 @@ class ProductCard extends StatelessWidget {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
-
               SizedBox(height: 4),
               Text(
                 price,
