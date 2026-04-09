@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AuthPage]
+class AuthRoute extends PageRouteInfo<void> {
+  const AuthRoute({List<PageRouteInfo>? children})
+    : super(AuthRoute.name, initialChildren: children);
+
+  static const String name = 'AuthRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AuthPage();
+    },
+  );
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})
@@ -22,6 +38,22 @@ class HomeRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const HomePage();
+    },
+  );
+}
+
+/// generated route for
+/// [TalkerPage]
+class TalkerRoute extends PageRouteInfo<void> {
+  const TalkerRoute({List<PageRouteInfo>? children})
+    : super(TalkerRoute.name, initialChildren: children);
+
+  static const String name = 'TalkerRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const TalkerPage();
     },
   );
 }

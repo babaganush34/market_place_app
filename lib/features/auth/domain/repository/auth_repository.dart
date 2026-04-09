@@ -5,4 +5,5 @@ import 'package:market_place_app/features/auth/data/models/login_model.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, AuthModel>> login(LoginModel model);
+  Future<Either<Failure, bool>> checkAuthStatus();
 }

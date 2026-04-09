@@ -30,4 +30,19 @@ class AuthRepositoryImpl implements AuthRepository {
       return Left(UnimplementedFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> checkAuthStatus() async {
+    try {
+      final accessToken = await _localDatasource.getAccessToken();
+      if (accessToken != null && accessToken.isNotEmpty) {
+        return const Right(true);
+      }
+      return Right(false);
+    } on DioException catch (e) {
+      return Left(ServerFailure(message: e.toString()));
+    } catch (e) {
+      return Left(UnimplementedFailure(message: e.toString()));
+    }
+  }
 }

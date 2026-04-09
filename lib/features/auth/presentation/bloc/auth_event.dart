@@ -16,3 +16,5 @@ final class LoginSubmitted extends AuthEvent {
   @override
   List<Object> get props => [username, password];
 }
+
+final class AppStartedEvent extends AuthEvent {}

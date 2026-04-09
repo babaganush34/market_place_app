@@ -47,6 +47,8 @@ dependencies:
   equatable: ^2.0.8
   flutter_secure_storage: ^10.0.0
   flutter_native_splash: ^2.4.7
+  talker_flutter: ^5.1.16
+  talker_bloc_logger: ^5.1.16
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +68,8 @@ flutter_native_splash:
   ios: true
   android: true
 
-  color: "#D64151"
+  color: "#F0E9CC"
+  # color_dark: "#C06C40"
   image: assets/images/shopping-cart.png
 
 # For information on the generic Dart part of this file, see the

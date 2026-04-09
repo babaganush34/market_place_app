@@ -6,6 +6,7 @@ import 'package:market_place_app/features/home/data/models/list_products_model.d
 import 'package:market_place_app/features/home/data/models/product_model.dart';
 import 'package:market_place_app/features/home/domain/usecases/get_products_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 
 part 'product_event.dart';
 part 'product_state.dart';
@@ -13,12 +14,24 @@ part 'product_state.dart';
 @Injectable()
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   final GetProductsUsecase _getProductsUsecase;
+  final Talker _talker;
 
-  ProductBloc({required GetProductsUsecase getProductsUsecase})
-    : _getProductsUsecase = getProductsUsecase,
-      super(ProductInitial()) {
+  ProductBloc({
+    required GetProductsUsecase getProductsUsecase,
+    required Talker talker,
+  }) : _talker = talker,
+       _getProductsUsecase = getProductsUsecase,
+       super(ProductInitial()) {
     on<LoadedProductsEvent>(_onLoadProducts);
     on<AddToCartEvent>(_onAddToCart);
+  }
+
+  @override
+  void onTransition(Transition<ProductEvent, ProductState> transition) {
+    _talker.info(
+      'Переход из ${transition.currentState} в ${transition.nextState}',
+    );
+    super.onTransition(transition);
   }
 
   Future<void> _onLoadProducts(

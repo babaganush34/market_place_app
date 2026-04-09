@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:market_place_app/core/router/app_router.dart';
 import 'inject_module.config.dart';
 
 final getIt = GetIt.instance;
@@ -12,7 +12,7 @@ final getIt = GetIt.instance;
   preferRelativeImports: true,
   asExtension: true,
 )
-void configureDependencies() => getIt.init();
+Future<void> configureDependencies() async => getIt.init();
 
 @module
 abstract class AppModule {

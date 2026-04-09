@@ -18,7 +18,7 @@ final class AuthError extends AuthState {
   List<Object> get props => [message];
 }
 
-final class LoadingState extends AuthState {}
+final class AuthLoading extends AuthState {}
 
 final class Authenticated extends AuthState {
   const Authenticated(this.model);
@@ -27,4 +27,15 @@ final class Authenticated extends AuthState {
 
   @override
   List<Object> get props => [model];
+}
+
+final class Unauthenticated extends AuthState {}
+
+final class AuthenticatedByToken extends AuthState {
+  const AuthenticatedByToken(this.isLoggedIn);
+
+  final bool isLoggedIn;
+
+  @override
+  List<Object> get props => [isLoggedIn];
 }
